@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light d_none_992">
+            <div class="w-100">
+                <div class="w-100">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav w-100">
+                            <a class="nav-link active" href="#">Buy</a>
+                            <a class="nav-link" href="#">Rent</a>
+                            <a class="nav-link" href="#">Sell</a>
+                            <a class="nav-link" href="#">Home Loans</a>
+                            <a class="nav-link" href="#">Find an Agent</a>
+                        </div>
+                        <div class="w-100 text-center"><img
+                                src="https://www.zillowstatic.com/s3/pfs/static/z-logo-default.svg" alt="main-logo">
+                        </div>
+                        <div class="navbar-nav w-100 justify-content-end">
+                            <a class="nav-link active" href="#">Manage Rentals</a>
+                            <a class="nav-link" href="#">Advertise</a>
+                            <a class="nav-link" href="#">Help</a>
+                            <a class="nav-link" href="#">Sign In</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="d_block_992">
+        <div class="d-flex align-items-center gap-3 p-2">
+            <button class="border-0 bg-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop"><i class="fas fa-bars"></i></button>
+            
+            <div class="position-relative">
+                <input type="text" id="search-input" class="search-input" placeholder="Enter a city">
+                <button id="clear-btn" class="clear-btn" style="display: none;">
+                    <svg width="10" height="" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 1L1 11M1 1L11 11" stroke="#3A3A3A" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+
+                </button>
+                <div id="search-btn" class="search-btn" style="display:none;">
+                    <svg width="15" height="15" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.76 10.27L17.49 16L16 17.49L10.27 11.76C9.2 12.53 7.91 13 6.5 13C2.91 13 0 10.09 0 6.5C0 2.91 2.91 0 6.5 0C10.09 0 13 2.91 13 6.5C13 7.91 12.53 9.2 11.76 10.27ZM6.5 2C4.01 2 2 4.01 2 6.5C2 8.99 4.01 11 6.5 11C8.99 11 11 8.99 11 6.5C11 4.01 8.99 2 6.5 2Z"
+                            fill="#ABABAF" />
+                    </svg>
+                    <!-- Search Icon -->
+                </div>
+                <div id="location-suggestions" class="location-suggestions"></div>
+
+            </div>
+        </div>
+
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop"
+            aria-labelledby="offcanvasWithBackdropLabel">
+            <div class="offcanvas-header">
+                <!-- <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Offcanvas with backdrop</h5> -->
+                <img src="https://www.zillowstatic.com/s3/pfs/static/z-logo-default.svg" alt="main-logo">
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="menu">
+                    <div class="menu-item">
+                        <a href="https://example.com/buy" class="menu-link">Buy</a>
+                        <span class="dropdown-icon" onclick="toggleDropdown02('buyDropdown')"><i
+                                class="fas fa-chevron-down"></i></span>
+                        <div id="buyDropdown" class="dropdown-content">
+                            <a href="#">Homes for sale</a>
+                            <a href="#">Foreclosures</a>
+                            <a href="#">For sale by owner</a>
+                            <a href="#">Open houses</a>
+                            <a href="#">New construction</a>
+                            <a href="#">Coming soon</a>
+                            <a href="#">Recent home sales</a>
+                            <a href="#">All homes</a>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <a href="#" class="menu-link">Rent</a>
+                        <span class="dropdown-icon" onclick="toggleDropdown02('rentDropdown')"><i
+                                class="fas fa-chevron-down"></i></span>
+                        <div id="rentDropdown" class="dropdown-content">
+                            <a href="#">Homes for rent</a>
+                            <a href="#">Apartment rentals</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" class="menu-link">Sell</a>
+                        <span class="dropdown-icon" onclick="toggleDropdown02('sellDropdown')"><i
+                                class="fas fa-chevron-down"></i></span>
+                        <div id="sellDropdown" class="dropdown-content">
+                            <a href="#">Homes for rent</a>
+                            <a href="#">Apartment rentals</a>
+                            <a href="#">New construction</a>
+                            <a href="#">Coming soon</a>
+                            <a href="#">Recent home sales</a>
+                            <a href="#">All homes</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" class="menu-link">Home Loans</a>
+                        <span class="dropdown-icon" onclick="toggleDropdown02('homeloansDropdown')"><i
+                                class="fas fa-chevron-down"></i></span>
+                        <div id="homeloansDropdown" class="dropdown-content">
+                            <a href="#">Discover Zillow Home Loans</a>
+                            <a href="#">See how much you qualify for</a>
+                            <a href="#">Estimate your monthly payment</a>
+                            <a href="#">Calculate your budget</a>
+                            <a href="#">Learn about the mortgage process</a>
+                            <a href="#">See today's rates</a>
+                            <a href="#">Refinance your home</a>
+                            <a href="#">Calculate your refinance savings</a>
+                            <a href="#">Browse lenders in your area</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" class="menu-link">Find an Agent</a>
+                        <span class="dropdown-icon" onclick="toggleDropdown02('agentDropdown')"><i
+                                class="fas fa-chevron-down"></i></span>
+                        <div id="agentDropdown" class="dropdown-content">
+                            <a href="#">Real estate agents</a>
+                            <a href="#">Property managers</a>
+                            <a href="#">Home inspectors</a>
+                            <a href="#">Other pros</a>
+                            <a href="#">Home improvement pros</a>
+                            <a href="#">Home builders</a>
+                            <a href="#">Real estate photographers</a>
+                            <a href="#">Agent advertising</a>
+                            <a href="#">Agent resource center</a>
+                            <a href="#">Create a free agent account</a>
+                            <a href="#">Real estate business plan</a>
+                            <a href="#">Real estate agent scripts</a>
+                            <a href="#">Listing flyer templates</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" class="menu-link">Manage Rentals</a>
+                        <span class="dropdown-icon" onclick="toggleDropdown02('rentalsDropdown')"><i
+                                class="fas fa-chevron-down"></i></span>
+                        <div id="rentalsDropdown" class="dropdown-content">
+                            <a href="#">List a rental</a>
+                            <a href="#">My Listings</a>
+                            <a href="#">Messages</a>
+                            <a href="#">Applications</a>
+                            <a href="#">Leases</a>
+                            <a href="#">Payments</a>
+                            <a href="#">Zillow Rental Manager</a>
+                            <a href="#">Price My Rental</a>
+                            <a href="#">Resource Center</a>
+                            <a href="#">Help Center</a>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <a href="#" class="menu-link">Advertise</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <section class="mini_navbar">
+        <div class="">
+            <div class="mini_navbar_main">
+                <div class="position-relative d_none_992">
+                    <input type="text" id="search-input" class="search-input" placeholder="Enter a city">
+                    <button id="clear-btn" class="clear-btn" style="display: none;">
+                        <svg width="10" height="" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11 1L1 11M1 1L11 11" stroke="#3A3A3A" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+
+                    </button>
+                    <div id="search-btn" class="search-btn" style="display:none;">
+                        <svg width="15" height="15" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M11.76 10.27L17.49 16L16 17.49L10.27 11.76C9.2 12.53 7.91 13 6.5 13C2.91 13 0 10.09 0 6.5C0 2.91 2.91 0 6.5 0C10.09 0 13 2.91 13 6.5C13 7.91 12.53 9.2 11.76 10.27ZM6.5 2C4.01 2 2 4.01 2 6.5C2 8.99 4.01 11 6.5 11C8.99 11 11 8.99 11 6.5C11 4.01 8.99 2 6.5 2Z"
+                                fill="#ABABAF" />
+                        </svg>
+                        <!-- Search Icon -->
+                    </div>
+                    <div id="location-suggestions" class="location-suggestions"></div>
+
+                </div>
+
+
+
+                <div class="dropdown" onclick="toggleDropdown(event, this)">
+                    For Rent
+
+                    <div class="dropdown-content" onclick="stopPropagation(event)">
+                        <div class="padding__wrapper">
+                            <label>
+                                <input type="radio" name="status" value="for-sale"> For Sale
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="for-rent" checked> For Rent
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="sold"> Sold
+                            </label>
+                            <button class="apply-button" onclick="applyFilters()">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown" onclick="toggleDropdown(event, this)">
+                    Price
+
+                    <div class="dropdown-content" onclick="stopPropagation(event)">
+                        <div class="dropdown-title mt-0">Price Range</div>
+                        <div class="padding__wrapper">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="flex: 1;">
+                                    <label for="min-price">Minimum</label>
+                                    <select id="min-price" class="price-select">
+                                        <option value="no-min">No Min</option>
+                                        <option value="0">$0</option>
+                                        <option value="50000">$50,000</option>
+                                        <option value="100000">$100,000</option>
+                                        <option value="150000">$150,000</option>
+                                        <option value="200000">$200,000</option>
+                                    </select>
+                                </div>
+                                <div style="flex: 1;">
+                                    <label for="max-price">Maximum</label>
+                                    <select id="max-price" class="price-select">
+                                        <option value="no-max">No Max</option>
+                                        <option value="50000">$50,000</option>
+                                        <option value="100000">$100,000</option>
+                                        <option value="150000">$150,000</option>
+                                        <option value="200000">$200,000</option>
+                                        <option value="250000">$250,000</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="apply-button" onclick="applyFilters()">Apply</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropdown" onclick="toggleDropdown(event, this)">
+                    Beds & Baths
+
+                    <div class="dropdown-content left__500" onclick="stopPropagation(event)">
+                        <div class="dropdown-title">Number of Bedrooms</div>
+                        <div class="padding__wrapper">
+
+                            <div class="options-grid bedroom-options">
+                                <button class="option-button">Studio</button>
+                                <button class="option-button">1+</button>
+                                <button class="option-button">2+</button>
+                                <button class="option-button">3+</button>
+                                <button class="option-button">4+</button>
+                                <button class="option-button">5+</button>
+                            </div>
+                            <label class="checkbox-label mb-0">
+                                <input type="checkbox" id="exact-match">
+                                <span>Use exact match</span>
+                            </label>
+                        </div>
+                        <div class="dropdown-title">Number of Bathrooms</div>
+                        <div class="padding__wrapper">
+                            <div class="options-grid bathroom-options">
+                                <button class="option-button">Any</button>
+                                <button class="option-button">1+</button>
+                                <button class="option-button">1.5+</button>
+                                <button class="option-button">2+</button>
+                                <button class="option-button">3+</button>
+                                <button class="option-button">4+</button>
+                            </div>
+                            <button class="apply-button" onclick="applyFilters()">Apply</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="dropdown" onclick="toggleDropdown(event, this)">
+                    Home Type
+
+                    <div class="dropdown-content" onclick="stopPropagation(event)">
+                        <div class="dropdown-title">Home Type</div>
+                        <div class="padding__wrapper">
+
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="select-all" checked>
+                                <!-- <i class="fas fa-check-circle"></i> -->
+                                <span>Deselect All</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Houses</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Townhomes</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Multi-family</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Condos/Co-ops</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Lots/Land</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Apartments</span>
+                            </label>
+                            <label class="checkbox-label mb-0">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Manufactured</span>
+                            </label>
+                        </div>
+                        <div class="dropdown-title">Space</div>
+                        <div class="padding__wrapper">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Entire place</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="home-type-option" checked>
+                                <span>Room</span>
+                            </label>
+
+                            <button class="apply-button" onclick="applyFilters()">Apply</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="dropdown" onclick="toggleDropdown(event, this)">
+                    More
+
+                    <div class="dropdown-content" onclick="stopPropagation(event)">
+
+                        <div class="dropdown-title mt-0">More filters</div>
+                        <div class="padding__wrapper mt-0">
+                            <div class="filter-section">
+                                <label class="global__labal" for="date">Move-in Date</label>
+                                <input class="input" type="date" name="date" id="date">
+                            </div>
+
+                            <div class="filter-section">
+                                <label class="global__labal">Square Feet</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <select class="price-select">
+                                        <option value="no-min">No Min</option>
+                                        <option value="500">500 </option>
+                                        <option value="1000">1,000 </option>
+                                        <option value="1500">1,500 </option>
+                                        <option value="2000">2,000 </option>
+                                    </select>
+                                    <select class="price-select">
+                                        <option value="no-max">No Max</option>
+                                        <option value="1500">1,500 </option>
+                                        <option value="2000">2,000 </option>
+                                        <option value="2500">2,500 </option>
+                                        <option value="3000">3,000 </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="filter-section">
+                                <label class="global__labal">Lot Size</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <select class="price-select">
+                                        <option value="no-min">No Min</option>
+                                        <option value="1000">1,000 </option>
+                                        <option value="5000">5,000 </option>
+                                        <option value="10000">10,000 </option>
+                                    </select>
+                                    <select class="price-select">
+                                        <option value="no-max">No Max</option>
+                                        <option value="5000">5,000 </option>
+                                        <option value="10000">10,000 </option>
+                                        <option value="20000">20,000 </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="filter-section">
+                                <label class="global__labal">Year Built</label>
+                                <div class="d-flex align-items-center gap-2">
+                                    <select class="price-select">
+                                        <option value="no-min">No Min</option>
+                                        <option value="1980">1980</option>
+                                        <option value="1990">1990</option>
+                                        <option value="2000">2000</option>
+                                        <option value="2010">2010</option>
+                                    </select>
+                                    <select class="price-select">
+                                        <option value="no-max">No Max</option>
+                                        <option value="1990">1990</option>
+                                        <option value="2000">2000</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2020">2020</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="filter-section">
+                                <label class="global__labal">Year Built</label>
+                                <label>
+                                    <input type="checkbox"> Has basement
+                                </label>
+                            </div>
+                            <div class="filter-section">
+                                <label class="global__labal">Number of stories</label>
+                                <label>
+                                    <input type="checkbox"> Single-story only
+                                </label>
+                            </div>
+                            <div class="filter-section">
+                                <label class="global__labal">Tours</label>
+                                <label>
+                                    <input type="checkbox"> Must have 3D Tour
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Instant Tour Available
+                                </label>
+                            </div>
+                            <div class="filter-section">
+                                <label class="global__labal">Pets</label>
+                                <label>
+                                    <input type="checkbox"> Allows large dogs
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Allows small dogs
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Allows cats
+                                </label>
+                                <label>
+                                    <input type="checkbox"> No pets
+                                </label>
+                            </div>
+                            <div class="filter-section">
+                                <label class="global__labal">Other Amenities</label>
+                                <label>
+                                    <input type="checkbox"> Must have A/C
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Must have pool
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Waterfront
+                                </label>
+                                <label>
+                                    <input type="checkbox"> On-site Parking
+                                </label>
+                                <label>
+                                    <input type="checkbox"> In-unit Laundry
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Accepts Zillow Applications
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Income restricted <button type="button" class="tooltip__btn"
+                                        data-bs-toggle="popover" data-bs-trigger="focus" title="Income Restricted"
+                                        data-bs-content="Find rentals with income restrictions. These homes have income caps that determine eligibility..">
+                                        ?
+                                    </button>
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Hardwood Floors
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Disabled Access <button type="button" class="tooltip__btn"
+                                        data-bs-toggle="popover" data-bs-trigger="focus" title="Disabled Access"
+                                        data-bs-content="Find rentals that the housing provider has identified as accessible for people with disabilities. Please note that Zillow is unable to independently validate this claim; please contact the housing provider with any questions.">
+                                        ?
+                                    </button>
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Utilities Included
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Short term lease available
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Furnished
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Outdoor space
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Controlled access
+                                </label>
+                                <label>
+                                    <input type="checkbox"> High speed internet
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Elevator
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Apartment Community <button type="button"
+                                        class="tooltip__btn" data-bs-toggle="popover" data-bs-trigger="focus"
+                                        title="Apartment Communities Only"
+                                        data-bs-content="Apartment Communities are professionally managed properties that typically have extra amenities and at least 25 units.">
+                                        ?
+                                    </button>
+                                </label>
+                            </div>
+                            <div class="filter-section">
+                                <label class="global__labal">View</label>
+                                <label>
+                                    <input type="checkbox"> City
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Mountain
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Park
+                                </label>
+                                <label>
+                                    <input type="checkbox"> Water
+                                </label>
+                            </div>
+                            <div class="filter-section">
+                                <label class="global__labal">Days on Zillow</label>
+                                <select class="price-select">
+                                    <option value="no-min">Any</option>
+                                    <option value="1000">1,000 </option>
+                                    <option value="5000">5,000 </option>
+                                    <option value="10000">10,000 </option>
+                                </select>
+                            </div>
+                            <div class="filter-section">
+                                <label class="global__labal">Keywords</label>
+                                <input class="input" type="text" name="keywords" id="keywords"
+                                    placeholder="Short term, furnished, etc.">
+                            </div>
+                            <button class="apply-button" onclick="applyFilters()">Apply</button>
+                            <button class="reset-button" onclick="resetFilters()">Reset all filters</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button class="save-button save__search">Save Search</button>
+            </div>
+
+        </div>
+    </section>
+    <section class="map__results" style="overflow-x: hidden;">
+        <div class="main__map_content_bx">
+            <!-- <div id="map" style="width: 100%; height: 700px;">
+               
+            </div> -->
+            <div class="main_map" id="map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.7584624509423!2d74.38938831145892!3d31.44831585059068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190501fd05bb51%3A0xd406c3a65f975cc9!2sZAPTA%20Technologies!5e0!3m2!1sen!2s!4v1731515007472!5m2!1sen!2s"
+                    width="100%" height="700" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="main_contant mt-3">
+                <p class="property_card_content">California City CA Real Estate & Homes For Sale</p>
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2"
+                    style="padding: 20px 20px 20px 0px;">
+                    <p>53 rentals available</p>
+                    <div class="dropdown d_none_992" onclick="toggleDropdown(event, this)">
+                        <span id="dropdown-label">Sort: Default</span>
+                        <div class="padding__wrapper dropdown-content" style="left: 0;">
+                            <div onclick="updateDropdownText(this)" class="mt-0">Homes for You</div>
+                            <div onclick="updateDropdownText(this)">Price (High to Low)</div>
+                            <div onclick="updateDropdownText(this)">Price (Low to High)</div>
+                            <div onclick="updateDropdownText(this)">Newest</div>
+                            <div onclick="updateDropdownText(this)">Bedrooms</div>
+                            <div onclick="updateDropdownText(this)">Bathrooms</div>
+                            <div onclick="updateDropdownText(this)">Square Feet</div>
+                            <div onclick="updateDropdownText(this)">Lot Size</div>
+                            <div onclick="updateDropdownText(this)">Default</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="property_card_main">
+                    <div class="property-card">
+                        <!-- Swiper Container -->
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="./assets/images/slide1.jpg" alt="slide1"></div>
+                                <div class="swiper-slide"><img src="./assets/images/slide2.jpg" alt="slide2"></div>
+                                <div class="swiper-slide"><img src="./assets/images/slide3.jpg" alt="slide3"></div>
+                            </div>
+                            <!-- Swiper Pagination and Navigation -->
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+
+                        <!-- Heart Button that triggers the modal -->
+                        <div class="swiper_status">814 days on Zillow</div>
+
+                        <button class="heart-btn" data-bs-toggle="modal" data-bs-target="#favoriteModal"><i
+                                class="far fa-heart"></i></button>
+
+                        <div class="property-info">
+                            <h3>$234,000</h3>
+                            <p>Studio | 2 ba | 1,700 sqft - Sold</p>
+                            <p>7148 California City Blvd, California City, CA 93505</p>
+                        </div>
+                    </div>
+                    <div class="property-card">
+                        <!-- Swiper Container -->
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="./assets/images/slide4.jpg" alt="slide4"></div>
+                                <div class="swiper-slide"><img src="./assets/images/slide2.jpg" alt="slide2"></div>
+                                <div class="swiper-slide"><img src="./assets/images/slide3.jpg" alt="slide3"></div>
+                            </div>
+                            <!-- Swiper Pagination and Navigation -->
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+
+                        <!-- Heart Button that triggers the modal -->
+                        <button class="heart-btn" data-bs-toggle="modal" data-bs-target="#favoriteModal"><i
+                                class="far fa-heart"></i></button>
+
+                        <div class="property-info">
+                            <h3>$234,000</h3>
+                            <p>Studio | 2 ba | 1,700 sqft - Sold</p>
+                            <p>7148 California City Blvd, California City, CA 93505</p>
+                        </div>
+                    </div>
+                    <div class="property-card">
+                        <!-- Swiper Container -->
+                        <div class="swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="./assets/images/slide3.jpg" alt="slide3"></div>
+
+                            </div>
+                            <!-- Swiper Pagination and Navigation -->
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
+
+                        <!-- Heart Button that triggers the modal -->
+                        <button class="heart-btn" data-bs-toggle="modal" data-bs-target="#favoriteModal"><i
+                                class="far fa-heart"></i></button>
+
+                        <div class="property-info">
+                            <h3>$234,000</h3>
+                            <p>Studio | 2 ba | 1,700 sqft - Sold</p>
+                            <p>7148 California City Blvd, California City, CA 93505</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <!-- Popup -->
+                <!-- <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <span class="close" onclick="closePopup()">&times;</span>
+                        <p>Property added to favorites!</p>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+    </section>
+
+    <div id="propertyCardContainer" class="property-card-container">
+        <div class="property-card">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="./assets/images/slide1.jpg" alt="slide1"></div>
+                    <div class="swiper-slide"><img src="./assets/images/slide2.jpg" alt="slide2"></div>
+                    <div class="swiper-slide"><img src="./assets/images/slide3.jpg" alt="slide3"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <button class="heart-btn" data-bs-toggle="modal" data-bs-target="#favoriteModal"><i
+                    class="far fa-heart"></i></button>
+            <div class="property-info">
+                <h3>$234,000</h3>
+                <p>Studio | 2 ba | 1,700 sqft - Sold</p>
+                <p>7148 California City Blvd, California City, CA 93505</p>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="favoriteModal" tabindex="-1" aria-labelledby="favoriteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="favoriteModalLabel">Add to Favorites</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Property added to your favorites!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- map -->
+    <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+        <div class="modal-dialog m-0">
+            <div class="modal-content" style="height: 100vh;border-radius: 0; transition: unset;">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="main_map" id="map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.7584624509423!2d74.38938831145892!3d31.44831585059068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39190501fd05bb51%3A0xd406c3a65f975cc9!2sZAPTA%20Technologies!5e0!3m2!1sen!2s!4v1731515007472!5m2!1sen!2s"
+                            width="100%" height="700" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- sort -->
+    <div class="modal fade" id="sortModal" tabindex="-1" aria-labelledby="sortModalLabel" aria-hidden="true">
+        <div class="modal-dialog m-0">
+            <div class="modal-content" style="height: 100vh;border-radius: 0; transition: unset;">
+                <div class="modal-header">
+                    <div id="dropdown-label" style="font-size: 20px;font-weight: 600;">Sorted results by</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="">
+                        <div data-bs-dismiss="modal" class="mt-0 py-2">Homes for You</div>
+                        <div data-bs-dismiss="modal" class="py-2">Price (High to Low)</div>
+                        <div data-bs-dismiss="modal" class="py-2">Price (Low to High)</div>
+                        <div data-bs-dismiss="modal" class="py-2">Newest</div>
+                        <div data-bs-dismiss="modal" class="py-2">Bedrooms</div>
+                        <div data-bs-dismiss="modal" class="py-2">Bathrooms</div>
+                        <div data-bs-dismiss="modal" class="py-2">Square Feet</div>
+                        <div data-bs-dismiss="modal" class="py-2">Lot Size</div>
+                        <div data-bs-dismiss="modal" class="py-2">Default</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="media__map__wrapper">
+        <button class="media__map" data-bs-toggle="modal" data-bs-target="#mapModal"><i class="far fa-map"></i>
+            Map</button>
+        <button class="media__map" data-bs-toggle="modal" data-bs-target="#sortModal"><i
+                class="fas fa-sort-amount-up-alt"></i> Sort</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // When "Map" button is clicked
+            $('.media__map').click(function () {
+                // Check if the clicked button is the "Map" button
+                if ($(this).text() === "Map") {
+                    // Show the map and apply fullscreen style
+                    $('.main_map').toggleClass('fullscreen').show();
+                }
+            });
+        });
+
+
+    </script>
+    <script>
+        class FavoriteButton {
+            constructor(button) {
+                this.button = button;
+                this.icon = button.querySelector('i');
+                this.modalId = button.getAttribute('data-bs-target');
+                this.modal = document.querySelector(this.modalId);
+
+                // Add event listeners
+                this.button.addEventListener('click', () => this.toggleHeart());
+                this.modal.addEventListener('hide.bs.modal', () => this.resetHeart());
+            }
+
+            toggleHeart() {
+                this.icon.classList.toggle('far'); // Unfilled heart
+                this.icon.classList.toggle('fas'); // Filled heart
+            }
+
+            resetHeart() {
+                this.icon.classList.remove('fas'); // Remove filled heart class
+                this.icon.classList.add('far');    // Add unfilled heart class
+            }
+        }
+
+        // Initialize the FavoriteButton class for all buttons with the 'heart-btn' class
+        document.querySelectorAll('.heart-btn').forEach(button => new FavoriteButton(button));
+
+    </script>
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Popup Functionality
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+    <script>
+        function toggleDropdown(event, element) {
+            // Toggle the dropdown visibility
+            event.stopPropagation();
+            element.classList.toggle('active');
+        }
+
+        function updateDropdownText(selectedElement) {
+            // Update the dropdown label with the selected option text
+            document.getElementById('dropdown-label').textContent = `Sort: ${selectedElement.textContent}`;
+            // Hide the dropdown after selection
+            document.querySelector('.dropdown').classList.remove('active');
+        }
+
+        // Close the dropdown if clicked outside
+        document.addEventListener('click', function (event) {
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    </script>
+    <script>
+        // Initialize all popovers on the page
+        document.addEventListener('DOMContentLoaded', function () {
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl)
+            })
+        });
+    </script>
+
+    <!--location-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const map = L.map('map').setView([31.4483, 74.3894], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Sample location data for multiple properties
+            const locations = [
+                { lat: 31.4483, lng: 74.3894, name: "Property 1" },
+                { lat: 31.4522, lng: 74.3965, name: "Property 2" },
+                { lat: 31.4600, lng: 74.3895, name: "Property 3" },
+                { lat: 31.4700, lng: 74.3815, name: "Property 4" }
+            ];
+
+            // Get the property card container element
+            const propertyCardContainer = document.getElementById("propertyCardContainer");
+
+            // Loop through locations and create markers
+            locations.forEach(function (location) {
+                const propertyMarker = L.marker([location.lat, location.lng]).addTo(map);
+                propertyMarker.bindPopup(location.name);
+
+                // Event listener for when a marker is clicked
+                propertyMarker.on("click", function (e) {
+                    // Get the coordinates of the clicked marker
+                    const latLng = e.latlng;
+
+                    // Convert latitude and longitude into pixel coordinates
+                    const point = map.latLngToContainerPoint(latLng);
+
+                    // Position the property card container based on the marker's position
+                    propertyCardContainer.style.left = `${point.x}px`;
+                    propertyCardContainer.style.top = `${point.y - propertyCardContainer.offsetHeight - 10}px`;  // Adjust vertical position for better visibility
+
+                    // Display the property card
+                    propertyCardContainer.style.display = "block";
+
+                    // Prevent the click event on the marker from propagating to the map click event
+                    e.originalEvent.stopPropagation();
+                });
+            });
+
+            // Hide the property card when clicking anywhere on the map
+            map.on("click", function () {
+                propertyCardContainer.style.display = "none";  // Hide the property card
+            });
+
+            // Hide the property card when clicking outside the card and marker on the document
+            document.addEventListener("click", function (e) {
+                // Check if the click is outside the card and the map marker
+                if (!propertyCardContainer.contains(e.target) && !e.target.closest('.leaflet-marker-icon')) {
+                    propertyCardContainer.style.display = "none";  // Hide the card if clicked outside
+                }
+            });
+        });
+    </script>
+
+
+
+    <script>
+        function toggleDropdown02(dropdownId) {
+            const allDropdowns = document.querySelectorAll('.dropdown-content');
+            const selectedDropdown = document.getElementById(dropdownId);
+
+            allDropdowns.forEach(dropdown => {
+                if (dropdown !== selectedDropdown) {
+                    dropdown.style.display = "none";
+                }
+            });
+
+            if (selectedDropdown.style.display === "block") {
+                selectedDropdown.style.display = "none";
+            } else {
+                selectedDropdown.style.display = "block";
+            }
+        }
+    </script>
+    <script>
+        // Toggle Dropdown Visibility
+        function toggleDropdown(event, dropdown) {
+            event.stopPropagation();
+            // Toggle the 'active' class for the clicked dropdown
+            dropdown.classList.toggle('active');
+
+            // Close all other dropdowns
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if (d !== dropdown) d.classList.remove('active');
+            });
+        }
+
+        // Stop Event Propagation for Dropdown Content
+        function stopPropagation(event) {
+            event.stopPropagation();
+        }
+
+        // Close all dropdowns if clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+            }
+        });
+
+        // Reset all filters
+        function resetFilters() {
+            // Reset checkboxes (all filters in .filter-section)
+            document.querySelectorAll('.filter-section input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+
+            // Reset all select dropdowns to their default option (index 0)
+            document.querySelectorAll('.filter-section select').forEach(select => select.selectedIndex = 0);
+
+            // Optionally close the dropdowns after reset
+            // document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        }
+
+        // Handle "Select All" for home type checkboxes
+        document.getElementById('select-all').addEventListener('change', function () {
+            const isChecked = this.checked;
+            const checkboxes = document.querySelectorAll('.home-type-option');
+
+            // Update checkbox state and the label text
+            checkboxes.forEach(checkbox => checkbox.checked = isChecked);
+            this.nextElementSibling.textContent = isChecked ? 'Deselect All' : 'Select All';
+        });
+
+        // Update "Select All" checkbox state based on individual checkbox selections
+        document.querySelectorAll('.home-type-option').forEach(option => {
+            option.addEventListener('change', function () {
+                const allChecked = Array.from(document.querySelectorAll('.home-type-option')).every(cb => cb.checked);
+                const selectAllCheckbox = document.getElementById('select-all');
+
+                selectAllCheckbox.checked = allChecked;
+                selectAllCheckbox.nextElementSibling.textContent = allChecked ? 'Deselect All' : 'Select All';
+            });
+        });
+
+        // Handle bedroom options (update active class on button click)
+        document.querySelectorAll('.bedroom-options .option-button').forEach(button => {
+            button.addEventListener('click', function () {
+                // Remove active class from all buttons and add it to the clicked one
+                document.querySelectorAll('.bedroom-options .option-button').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Handle bathroom options (update active class on button click)
+        document.querySelectorAll('.bathroom-options .option-button').forEach(button => {
+            button.addEventListener('click', function () {
+                // Remove active class from all buttons and add it to the clicked one
+                document.querySelectorAll('.bathroom-options .option-button').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Toggle "+" sign on bedroom options based on "exact match" checkbox
+        document.getElementById('exact-match').addEventListener('change', function () {
+            const bedroomButtons = document.querySelectorAll('.bedroom-options .option-button');
+
+            bedroomButtons.forEach(btn => {
+                if (this.checked) {
+                    btn.textContent = btn.textContent.replace('+', ''); // Remove "+" sign
+                } else if (!btn.textContent.includes('+') && btn.textContent !== 'Studio' && btn.textContent !== 'Any') {
+                    btn.textContent += '+'; // Add "+" sign to others
+                }
+            });
+        });
+
+        // Close dropdown when "Apply" button is clicked
+        function applyFilters() {
+            // Add any logic for applying filters here (optional)
+
+            // Optionally close dropdown after applying filters
+            document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+        }
+    </script>
+    <!-- search bar location -->
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const clearBtn = document.getElementById('clear-btn');
+        const searchBtn = document.getElementById('search-btn');
+        const locationSuggestions = document.getElementById('location-suggestions');
+
+        // Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API Key
+        const apiKey = 'YOUR_API_KEY';
+
+        // Show the close button and search button when the input is not empty
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.trim();
+
+            if (query.length > 0) {
+                clearBtn.style.display = 'block';  // Show the close button
+                searchBtn.style.display = 'block'; // Show the search button
+
+                fetch(`https://api.openweathermap.org/data/2.5/find?q=${query}&type=like&sort=population&cnt=10&appid=${apiKey}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        locationSuggestions.innerHTML = ''; // Clear previous suggestions
+
+                        if (data.list && data.list.length > 0) {
+                            // Loop through each city in the response
+                            data.list.forEach(location => {
+                                const div = document.createElement('div');
+                                div.textContent = location.name + ', ' + location.sys.country;
+
+                                // Add click handler to fill the input with the selected location
+                                div.onclick = function () {
+                                    searchInput.value = div.textContent;
+                                    locationSuggestions.classList.remove('active'); // Hide suggestions after selection
+                                    clearBtn.style.display = 'block'; // Ensure clear button stays visible
+                                    searchBtn.style.display = 'block'; // Ensure search button stays visible
+                                };
+
+                                locationSuggestions.appendChild(div);
+                            });
+
+                            locationSuggestions.classList.add('active'); // Show the suggestions
+                        } else {
+                            locationSuggestions.innerHTML = '<div>No results found</div>';
+                            locationSuggestions.classList.add('active');
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error fetching location data: ', err);
+                        locationSuggestions.innerHTML = '<div>Error fetching locations</div>';
+                        locationSuggestions.classList.add('active');
+                    });
+            } else {
+                locationSuggestions.classList.remove('active'); // Hide suggestions if input is too short
+                clearBtn.style.display = 'none'; // Hide the close button if input is empty
+                searchBtn.style.display = 'none'; // Hide the search button if input is empty
+            }
+        });
+
+        // Close the suggestions and clear the input when the close button is clicked
+        clearBtn.addEventListener('click', function () {
+            searchInput.value = ''; // Clear the input field
+            locationSuggestions.innerHTML = ''; // Clear the suggestions
+            locationSuggestions.classList.remove('active'); // Hide the suggestions dropdown
+            clearBtn.style.display = 'none'; // Hide the clear button
+            searchBtn.style.display = 'none'; // Hide the search button
+        });
+
+        // Trigger the search functionality when the search button is clicked
+        searchBtn.addEventListener('click', function () {
+            const query = searchInput.value.trim();
+
+            if (query.length > 0) {
+                // Perform the search (this is where your search logic goes)
+                console.log("Searching for:", query);
+
+                // Optionally, clear suggestions after searching
+                locationSuggestions.classList.remove('active');
+            } else {
+                // If input is empty, ensure suggestions are hidden and buttons are also hidden
+                locationSuggestions.classList.remove('active');
+                clearBtn.style.display = 'none';
+                searchBtn.style.display = 'none';
+            }
+        });
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('#search-input')) {
+                locationSuggestions.classList.remove('active');
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>
