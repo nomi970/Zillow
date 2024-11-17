@@ -95,7 +95,11 @@ h1, h2, h3, h4, h5, p {
     font-size: 10px;
     transition: transform 0.3s;
 }
-
+.more_filter_btn::after{
+    content: '▼';
+    font-size: 10px;
+    transition: transform 0.3s;
+}
 /* Rotate the arrow icon when dropdown is active */
 .dropdown.active::after {
     transform: rotate(180deg);
@@ -627,6 +631,20 @@ h1, h2, h3, h4, h5, p {
 .leaflet-fade-anim .leaflet-map-pane .leaflet-popup{
     display: none;
 }
+.more_filter_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    padding: 8px 16px;
+    border: 0.5px solid rgb(70, 68, 68);
+    border-radius: 8px;
+    width: fit-content;
+    font-size: 14px;
+    font-family: Poppins;
+    font-weight: 500;
+}
 
 
 
@@ -770,6 +788,14 @@ h1, h2, h3, h4, h5, p {
 .media__map__wrapper{
     display: none;
 }
+#more_filterModal .filter-section label{
+    color: #888;
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 400;
+    padding-left: 5px;
+
+}
 @media screen and (max-width: 992px) {
     .d_block_992{
         display: block;
@@ -791,6 +817,10 @@ h1, h2, h3, h4, h5, p {
         flex-wrap: wrap;
         padding: 0px 10px;
     }
+    .media__map__wrapper{
+        display: block;
+        left: 25%;
+    }
 }
 @media screen and (max-width: 500px) {
     .property_card_main{
@@ -800,7 +830,6 @@ h1, h2, h3, h4, h5, p {
     }
     .media__map__wrapper{
         left: 0%;
-        display: block;
         z-index: 10;
     }
     .dropdown-content{
@@ -810,9 +839,24 @@ h1, h2, h3, h4, h5, p {
         left: 0 !important;
     }
     .mini_navbar_main{
-        display: grid;
-        grid-template-columns: 1fr;
+        flex-wrap: nowrap;
     }
+    .dropdown-title{
+        font-weight: 500;
+        padding-left: 0;
+        padding-right: 0;
+        background: transparent;
+    }
+    .save__search,
+    .dropdown,
+    .more_filter_btn{
+        font-size: 12px;
+        padding: 7px 8px;
+    }
+    .offcanvas-body .dropdown-content{
+        padding: 0px 10px;
+    }
+    
 }
 
 @media screen and (max-width: 400px) {
