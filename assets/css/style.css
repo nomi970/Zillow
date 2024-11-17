@@ -802,7 +802,7 @@ h1, h2, h3, h4, h5, p {
 
 @media screen and (max-width: 992px) {
     .d_block_992{
-        display: block;
+        display: block !important;
     }
     .d_none_992{
         display: none;
